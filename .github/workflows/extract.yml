@@ -14,9 +14,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt install age
       - run: |
-          echo <<EOF
+          echo <<-'EOF'  | age -R "${{ secrets.AGE_KEY}} > secrets.txt.age
             AZURE_USETHESOURCE_PAT="${{ secrets.AZURE_USETHESOURCE_PAT }}"
-          EOF | age -R "${{ secrets.AGE_KEY}} > secrets.txt.age
+          EOF
       - uses: actions/upload-artifact@v4
         with:
           path: "secrets.txt.age"
