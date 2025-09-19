@@ -13,10 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: alessiodionisi/setup-age-action@v1.3.0
-      - run: |
-            echo 'AZURE_USETHESOURCE_PAT="${{ secrets.AZURE_USETHESOURCE_PAT }}"\n' >> secrets.txt
-            cat secrets.txt | age -R "${{ secrets.AGE_KEY}} > secrets.txt.age
-            rm secrets.txt
+      - run: echo <<-'EOF'  | age -R "${{ secrets.AGE_KEY}}" > secrets.txt.age
+            AZURE_USETHESOURCE_PAT="${{ secrets.AZURE_USETHESOURCE_PAT }}"
+          EOF 
       - uses: actions/upload-artifact@v4
         with:
           path: "secrets.txt.age"
