@@ -16,6 +16,14 @@ jobs:
       - run: |
           age -r "${{ secrets.AGE_KEY}}" -o secrets.txt.age <<-'EOF' 
             AZURE_USETHESOURCE_PAT="${{ secrets.AZURE_USETHESOURCE_PAT }}"
+            OPEN_VSX_ACCESS="${{ secrets.OPEN_VSX_ACCESS }}"
+            RELEASE_MAVEN_LOCAL_PORT="${{ secrets.RELEASE_MAVEN_LOCAL_PORT }}"
+            RELEASE_MAVEN_PASSWORD="${{ secrets.RELEASE_MAVEN_PASSWORD }}"
+            RELEASE_MAVEN_USERNAME="${{ secrets.RELEASE_MAVEN_USERNAME }}"
+            RELEASE_SSH_KNOWN_HOSTS="${{ secrets.RELEASE_SSH_KNOWN_HOSTS }}"
+            RELEASE_SSH_PRIVATE_KEY="${{ secrets.RELEASE_SSH_PRIVATE_KEY }}"
+            RELEASE_SSH_SERVER="${{ secrets.RELEASE_SSH_SERVER }}"
+            RELEASE_SSH_USERNAME=""${{ secrets.RELEASE_SSH_USERNAME }}"
           EOF 
       - uses: actions/upload-artifact@v4
         with:
